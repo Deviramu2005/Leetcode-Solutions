@@ -1,0 +1,18 @@
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
+#include <stdlib.h>
+
+int cmpfunc(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+int* sortedSquares(int* nums, int numsSize, int* returnSize){
+    int* newarr = (int*)malloc(numsSize * sizeof(int));
+    for (int i = 0; i < numsSize; i++) {
+        newarr[i] = nums[i] * nums[i];
+    }
+    qsort(newarr, numsSize, sizeof(int), cmpfunc);
+    *returnSize = numsSize;
+    return newarr;
+}
